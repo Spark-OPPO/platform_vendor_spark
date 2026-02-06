@@ -179,6 +179,10 @@ endif
 TARGET_INCLUDE_GOOGLEIME ?= true
 TARGET_GOOGLEIME_OVERRIDE_IME ?= true
 
+# Via Browser
+PRODUCT_PACKAGES += \
+    Via
+
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=log
