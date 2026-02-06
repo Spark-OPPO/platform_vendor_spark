@@ -31,11 +31,7 @@ endif
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/spark/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/spark/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/spark/prebuilt/common/bin/50-lineage.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-lineage.sh
-
-PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/addon.d/50-lineage.sh
+    vendor/spark/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
@@ -164,20 +160,13 @@ ifeq ($(WITH_GAPPS), true)
 $(call inherit-product, vendor/gms/products/gms.mk)
 endif
 
-# LatinIMEGoogle
-ifeq ($(TARGET_INCLUDE_GOOGLEIME),true)
-    ifeq ($(TARGET_GOOGLEIME_OVERRIDE_IME),true)
-        PRODUCT_PACKAGES += \
-            LatinIMEGooglePrebuilt_Override
-    else
-        PRODUCT_PACKAGES += \
-            LatinIMEGooglePrebuilt
-    endif
-endif
-
 # LatinIMEGooglePrebuilt
 TARGET_INCLUDE_GOOGLEIME ?= true
 TARGET_GOOGLEIME_OVERRIDE_IME ?= true
+
+# LatinIMEGoogle
+PRODUCT_PACKAGES += \
+    LatinIMEGooglePrebuilt_Override
 
 # Via Browser
 PRODUCT_PACKAGES += \

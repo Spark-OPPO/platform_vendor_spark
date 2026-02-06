@@ -13,11 +13,3 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.spark.fingerprint=$(ROM_FINGERPRINT) \
     ro.spark.version=$(SPARK_VERSION) \
     ro.modversion=$(SPARK_VERSION)
-
-# LineageOS Platform SDK Version
-ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.lineage.build.version.plat.sdk=$(LINEAGE_PLATFORM_SDK_VERSION)
-
-# LineageOS Platform Internal Version
-ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.lineage.build.version.plat.rev=$(LINEAGE_PLATFORM_REV)
