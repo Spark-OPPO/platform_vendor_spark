@@ -3,7 +3,6 @@ android_app_import {
     owner: "google",
     apk: "LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk",
     presigned: true,
-    preprocessed: true,
     dex_preopt: {
         enabled: false,
     },
@@ -16,7 +15,6 @@ android_app_import {
     owner: "google",
     apk: "LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk",
     presigned: true,
-    preprocessed: true,
     dex_preopt: {
         enabled: false,
     },
@@ -27,7 +25,6 @@ android_app_import {
     name: "Via",
     apk: "Via.apk",
     presigned: true,
-    preprocessed: true,
     dex_preopt: {
         enabled: false,
     },
