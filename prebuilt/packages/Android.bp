@@ -23,7 +23,7 @@ android_app_import {
 
 android_app_import {
     name: "Via",
-    apk: "Via.apk",
+    apk: "Via/Via.apk",
     presigned: true,
     dex_preopt: {
         enabled: false,
