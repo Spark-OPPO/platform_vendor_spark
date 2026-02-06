@@ -164,6 +164,21 @@ ifeq ($(WITH_GAPPS), true)
 $(call inherit-product, vendor/gms/products/gms.mk)
 endif
 
+# LatinIMEGoogle
+ifeq ($(TARGET_INCLUDE_GOOGLEIME),true)
+    ifeq ($(TARGET_GOOGLEIME_OVERRIDE_IME),true)
+        PRODUCT_PACKAGES += \
+            LatinIMEGooglePrebuilt_Override
+    else
+        PRODUCT_PACKAGES += \
+            LatinIMEGooglePrebuilt
+    endif
+endif
+
+# LatinIMEGooglePrebuilt
+TARGET_INCLUDE_GOOGLEIME ?= true
+TARGET_GOOGLEIME_OVERRIDE_IME ?= true
+
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=log
