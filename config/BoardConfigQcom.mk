@@ -11,6 +11,9 @@ HOLI := holi #SM4350
 TARO := taro #SM8450
 KALAMA := kalama #SM8550
 
+# BR family
+BR_3_10_FAMILY := msm8952
+
 UM_3_18_FAMILY := msm8996
 UM_4_4_FAMILY := msm8998
 UM_4_9_FAMILY := sdm845 sdm710
@@ -26,6 +29,12 @@ UM_4_4_FAMILY += sdm660
 else
 UM_4_9_LEGACY_FAMILY := msm8937 msm8953
 UM_4_19_LEGACY_FAMILY := sdm660
+
+ifeq ($(TARGET_KERNEL_VERSION),4.19)
+    UM_4_19_LEGACY_FAMILY += msm8952
+else
+    UM_4_9_LEGACY_FAMILY += msm8952
+endif
 endif
 
 UM_PLATFORMS := \
@@ -127,7 +136,7 @@ ifneq ($(filter $(UM_5_10_FAMILY) $(UM_5_15_FAMILY),$(TARGET_BOARD_PLATFORM)),)
 endif
 
 # Enable displayconfig on every UM platform
-ifeq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
+ifeq ($(filter $(BR_3_10_FAMILY) $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
     SOONG_CONFIG_qtidisplay_displayconfig_enabled := true
 endif
 
@@ -209,7 +218,7 @@ endif
 
 # Add data-ipa-cfg-mgr to PRODUCT_SOONG_NAMESPACES if needed
 ifneq ($(USE_DEVICE_SPECIFIC_DATA_IPA_CFG_MGR),true)
-    ifneq ($(filter $(LEGACY_UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
+    ifneq ($(filter $(BR_3_10_FAMILY) $(LEGACY_UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
         PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/data-ipa-cfg-mgr-legacy-um
     else
         PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/data-ipa-cfg-mgr
